@@ -1,0 +1,27 @@
+{
+    "name": "shadowhand/destrukt",
+    "description": "Simple immutable data structures",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Woody Gilk",
+            "email": "woody.gilk@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Shadowhand\\Destrukt\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Shadowhand\\Test\\Destrukt\\": "tests"
+        }
+    }
+}

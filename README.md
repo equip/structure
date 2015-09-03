@@ -1,2 +1,5 @@
-# destrukt
-Simple immutable data structures for PHP
+# Destrukt
+
+Simple immutable data structures for PHP.
+
+MIT license.
