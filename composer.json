@@ -1,6 +1,15 @@
 {
     "name": "shadowhand/destrukt",
-    "description": "Simple immutable data structures",
+    "description": "Simple, immutable data structures",
+    "keywords": [
+        "data structure",
+        "immutable",
+        "hash map",
+        "hash table",
+        "hash",
+        "list",
+        "set"
+    ],
     "license": "MIT",
     "authors": [
         {
