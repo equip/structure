@@ -4,7 +4,7 @@ namespace Shadowhand\Test\Destrukt;
 
 use Shadowhand\Destrukt\Dictionary;
 
-class HashTest extends StructTest
+class DictionaryTest extends StructTest
 {
     public function setUp()
     {
@@ -18,27 +18,35 @@ class HashTest extends StructTest
 
     public function testReplace()
     {
-        $hash = $this->struct;
-        $copy = $hash->withData([
+        $dict = $this->struct;
+        $copy = $dict->withData([
             'one'   => 'uno',
             'two'   => 'dos',
             'three' => 'tres',
             'four'  => 'quatro',
         ]);
 
-        $this->assertEquals(1, $hash->getValue('one'));
+        $this->assertEquals(1, $dict->getValue('one'));
         $this->assertEquals('uno', $copy->getValue('one'));
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testReplaceFailure()
+    {
+        $this->struct->withData([3, 2, 1]);
     }
 
     public function testAppend()
     {
-        $hash = $this->struct;
-        $copy = $hash->withValue('five', 5);
+        $dict = $this->struct;
+        $copy = $dict->withValue('five', 5);
 
-        $this->assertEquals(4, count($hash));
+        $this->assertEquals(4, count($dict));
         $this->assertEquals(5, count($copy));
 
-        $this->assertEquals(null, $hash->getValue('five'));
+        $this->assertEquals(null, $dict->getValue('five'));
 
         $this->assertEquals(5, $copy->getValue('five'));
         $this->assertEquals(null, $copy->getValue('six'));
@@ -50,13 +58,5 @@ class HashTest extends StructTest
     public function testAppendKeyFailure()
     {
         $this->struct->withValue(6, 'six');
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testValidateFailure()
-    {
-        $this->struct->validate([3, 2, 1]);
     }
 }
