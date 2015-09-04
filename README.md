@@ -29,7 +29,12 @@ compliance oversights, please send a patch via pull request.
 stores values identified by a key. Only associative arrays can be used to
 initialize the structure. Any value can be defined by a string key.
 
-**`UnorderedList`** is an implementation of a [list][wiki-list] that stores an
+**`OrderedList`** is an implementation of a [list][wiki-list] that stores ordered
+values. Only an indexed array can be used to initialize the structure. Any value
+can be added. When the list is exposed it will be sorted by the defined callable.
+By default the [`sort`][php-sort] function will be used.
+
+**`UnorderedList`** is an implementation of a [list][wiki-list] that stores
 unordered values. The same value may appear more than once. Only an indexed array
 can be used to initialize the structure. Any value can be added.
 
@@ -41,6 +46,8 @@ be added.
 [wiki-dict]: https://en.wikipedia.org/wiki/Associative_array
 [wiki-list]: https://en.wikipedia.org/wiki/List_(abstract_data_type)
 [wiki-set]: https://en.wikipedia.org/wiki/Set_(abstract_data_type)
+
+[php-sort]: http://php.net/sort
 
 ## Requirements
 
