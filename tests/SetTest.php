@@ -88,4 +88,13 @@ class SetTest extends StructTest
 
         $this->assertEquals($set, array_unique($set));
     }
+
+    public function testRemoveValue()
+    {
+        $set  = $this->struct;
+        $copy = $set->withoutValue('blue');
+
+        $this->assertTrue($set->hasValue('blue'));
+        $this->assertFalse($copy->hasValue('blue'));
+    }
 }

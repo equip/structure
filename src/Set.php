@@ -52,4 +52,21 @@ class Set implements StructInterface
 
         return $copy;
     }
+
+    /**
+     * Get a copy without a given value.
+     *
+     * @param  string $key
+     * @return self
+     */
+    public function withoutValue($value)
+    {
+        $copy = clone $this;
+
+        if (false !== ($key = array_search($value, $copy->data, true))) {
+            unset($copy->data[$key]);
+        }
+
+        return $copy;
+    }
 }
