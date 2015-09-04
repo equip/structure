@@ -63,4 +63,18 @@ class Dictionary implements StructInterface
 
         return $copy;
     }
+
+    /**
+     * Get a copy without a given key.
+     *
+     * @param  string $key
+     * @return self
+     */
+    public function withoutValue($key)
+    {
+        $copy = clone $this;
+        unset($copy->data[$key]);
+
+        return $copy;
+    }
 }

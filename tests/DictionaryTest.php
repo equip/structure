@@ -67,4 +67,13 @@ class DictionaryTest extends StructTest
     {
         $this->struct->withValue(6, 'six');
     }
+
+    public function testRemoveKey()
+    {
+        $dict = $this->struct;
+        $copy = $dict->withoutValue('one');
+
+        $this->assertTrue($dict->hasValue('one'));
+        $this->assertFalse($copy->hasValue('one'));
+    }
 }
