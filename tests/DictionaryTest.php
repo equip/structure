@@ -38,6 +38,14 @@ class DictionaryTest extends StructTest
         $this->struct->withData([3, 2, 1]);
     }
 
+    public function testExists()
+    {
+        $this->assertTrue($this->struct->hasValue('one'));
+        $this->assertTrue($this->struct->hasValue('four'));
+        $this->assertFalse($this->struct->hasValue('five'));
+        $this->assertFalse($this->struct->hasValue('nil'));
+    }
+
     public function testAppend()
     {
         $dict = $this->struct;

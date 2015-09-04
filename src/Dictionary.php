@@ -16,6 +16,17 @@ class Dictionary implements StructInterface
     }
 
     /**
+     * Check if a given value is defined.
+     *
+     * @param  string $key
+     * @return boolean
+     */
+    public function hasValue($key)
+    {
+        return array_key_exists($key, $this->data);
+    }
+
+    /**
      * Get a value from the hash.
      *
      * If the value does not exist, the default will be returned.
@@ -26,7 +37,7 @@ class Dictionary implements StructInterface
      */
     public function getValue($key, $default = null)
     {
-        if (array_key_exists($key, $this->data)) {
+        if ($this->hasValue($key)) {
             return $this->data[$key];
         }
         return $default;
