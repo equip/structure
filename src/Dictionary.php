@@ -2,7 +2,7 @@
 
 namespace Shadowhand\Destrukt;
 
-class HashStruct implements StructInterface
+class Dictionary implements StructInterface
 {
     use Storage;
 

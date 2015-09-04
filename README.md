@@ -25,21 +25,20 @@ compliance oversights, please send a patch via pull request.
 
 ## Structures
 
-**`HashStruct`** is an implementation of a [hash table][wiki-hash] that maps keys
-to values. Only associative arrays can be used to initialize a hash. Any key/value
-pair may be added to the hash.
+**`Dictionary`** is an implementation of a [associative array][wiki-dict] that
+stores values identified by a key. Only associative arrays can be used to
+initialize the structure. Any value can be defined by a string key.
 
-**`ListStruct`** is an implementation of a [list][wiki-list] that keeps an
-ordered list of values. The same value may appear more than once. Only an
-indexed array can be used to initialize a list. Any value can be added to
-the list.
+**`UnorderedList`** is an implementation of a [list][wiki-list] that stores an
+unordered values. The same value may appear more than once. Only an indexed array
+can be used to initialize the structure. Any value can be added.
 
-**`SetStruct`** is an implementation of a [set][wiki-set] that keeps an unordered
-list of values. The same value may *not* appear more than once. Only an indexed
-array of unique values can be used to initialize a set. Only values that do not
-already exist in the set can be added.
+**`Set`** is an implementation of a [set][wiki-set] that stores a unique values.
+The same value may *not* appear more than once. Only an indexed array can be used
+to initialize the structure. Only values that do not already exist in the set can
+be added.
 
-[wiki-hash]: https://en.wikipedia.org/wiki/Hash_table
+[wiki-dict]: https://en.wikipedia.org/wiki/Associative_array
 [wiki-list]: https://en.wikipedia.org/wiki/List_(abstract_data_type)
 [wiki-set]: https://en.wikipedia.org/wiki/Set_(abstract_data_type)
 

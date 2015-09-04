@@ -2,7 +2,7 @@
 
 namespace Shadowhand\Destrukt;
 
-class ListStruct implements StructInterface
+class UnorderedList implements StructInterface
 {
     use Storage;
 

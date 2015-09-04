@@ -2,13 +2,13 @@
 
 namespace Shadowhand\Test\Destrukt;
 
-use Shadowhand\Destrukt\HashStruct;
+use Shadowhand\Destrukt\Dictionary;
 
 class HashTest extends StructTest
 {
     public function setUp()
     {
-        $this->struct = new HashStruct([
+        $this->struct = new Dictionary([
             'one'   => 1,
             'two'   => 2,
             'three' => 3,

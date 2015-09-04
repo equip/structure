@@ -2,7 +2,7 @@
 
 namespace Shadowhand\Destrukt;
 
-class SetStruct extends ListStruct
+class Set extends UnorderedList
 {
     public function validate(array $data)
     {

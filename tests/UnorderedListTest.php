@@ -2,13 +2,13 @@
 
 namespace Shadowhand\Test\Destrukt;
 
-use Shadowhand\Destrukt\ListStruct;
+use Shadowhand\Destrukt\UnorderedList;
 
-class ListTest extends \PHPUnit_Framework_TestCase
+class UnorderedListTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $this->struct = new ListStruct([
+        $this->struct = new UnorderedList([
             'red',
             'green',
             'blue',

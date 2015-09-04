@@ -2,13 +2,13 @@
 
 namespace Shadowhand\Test\Destrukt;
 
-use Shadowhand\Destrukt\SetStruct;
+use Shadowhand\Destrukt\Set;
 
 class SetTest extends StructTest
 {
     public function setUp()
     {
-        $this->struct = new SetStruct([
+        $this->struct = new Set([
             'red',
             'green',
             'blue',

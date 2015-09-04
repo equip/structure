@@ -2,7 +2,7 @@
 
 namespace Shadowhand\Test\Destrukt;
 
-use Shadowhand\Destrukt\SetStruct;
+use Shadowhand\Destrukt\Set;
 
 abstract class StructTest extends \PHPUnit_Framework_TestCase
 {
