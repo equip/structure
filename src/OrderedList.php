@@ -2,9 +2,12 @@
 
 namespace Shadowhand\Destrukt;
 
+use Shadowhand\Destrukt\Ability;
+
 class OrderedList implements StructInterface
 {
-    use Storage;
+    use Ability\Storage;
+    use Ability\ValueStorage;
 
     /**
      * @var callable
@@ -39,20 +42,6 @@ class OrderedList implements StructInterface
     {
         $copy = clone $this;
         $copy->sorter = $sorter;
-
-        return $copy;
-    }
-
-    /**
-     * Get a copy with an new value.
-     *
-     * @param  mixed $value
-     * @return self
-     */
-    public function withValue($value)
-    {
-        $copy = clone $this;
-        $copy->data[] = $value;
 
         return $copy;
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Shadowhand\Destrukt;
+namespace Shadowhand\Destrukt\Ability;
 
 trait Storage
 {

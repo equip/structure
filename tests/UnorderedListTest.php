@@ -18,6 +18,12 @@ class UnorderedListTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    public function testExists()
+    {
+        $this->assertTrue($this->struct->hasValue('red'));
+        $this->assertFalse($this->struct->hasValue('beans'));
+    }
+
     public function testReplace()
     {
         $list = $this->struct;
@@ -47,6 +53,15 @@ class UnorderedListTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(6, count($list));
         $this->assertEquals(7, count($copy));
+    }
+
+    public function testRemove()
+    {
+        $set  = $this->struct;
+        $copy = $set->withoutValue('green');
+
+        $this->assertTrue($set->hasValue('green'));
+        $this->assertFalse($copy->hasValue('green'));
     }
 
     public function testNotUnique()

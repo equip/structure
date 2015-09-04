@@ -17,6 +17,12 @@ class OrderedListTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    public function testExists()
+    {
+        $this->assertTrue($this->struct->hasValue('banana'));
+        $this->assertFalse($this->struct->hasValue('cabbage'));
+    }
+
     public function testSorting()
     {
         $array = $this->struct->toArray();
@@ -63,6 +69,15 @@ class OrderedListTest extends \PHPUnit_Framework_TestCase
         $copy = $list->withValue('fig');
 
         $this->assertEquals(count($copy), count($list) + 1);
+    }
+
+    public function testRemove()
+    {
+        $set  = $this->struct;
+        $copy = $set->withoutValue('apple');
+
+        $this->assertTrue($set->hasValue('apple'));
+        $this->assertFalse($copy->hasValue('apple'));
     }
 
     public function testNotUnique()

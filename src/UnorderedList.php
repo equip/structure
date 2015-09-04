@@ -2,9 +2,12 @@
 
 namespace Shadowhand\Destrukt;
 
+use Shadowhand\Destrukt\Ability;
+
 class UnorderedList implements StructInterface
 {
-    use Storage;
+    use Ability\Storage;
+    use Ability\ValueStorage;
 
     public function validate(array $data)
     {
@@ -13,19 +16,5 @@ class UnorderedList implements StructInterface
                 'List structures cannot be indexed by keys'
             );
         }
-    }
-
-    /**
-     * Get a copy with an new value.
-     *
-     * @param  mixed $value
-     * @return self
-     */
-    public function withValue($value)
-    {
-        $copy = clone $this;
-        $copy->data[] = $value;
-
-        return $copy;
     }
 }

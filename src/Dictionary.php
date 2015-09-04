@@ -2,9 +2,11 @@
 
 namespace Shadowhand\Destrukt;
 
+use Shadowhand\Destrukt\Ability;
+
 class Dictionary implements StructInterface
 {
-    use Storage;
+    use Ability\Storage;
 
     public function validate(array $data)
     {
