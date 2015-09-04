@@ -47,6 +47,14 @@ class HashTest extends StructTest
     /**
      * @expectedException \InvalidArgumentException
      */
+    public function testAppendKeyFailure()
+    {
+        $this->struct->withValue(6, 'six');
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
     public function testValidateFailure()
     {
         $this->struct->validate([3, 2, 1]);

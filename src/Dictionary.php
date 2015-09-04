@@ -41,6 +41,12 @@ class Dictionary implements StructInterface
      */
     public function withValue($key, $value)
     {
+        if (!is_string($key)) {
+            throw new \InvalidArgumentException(
+                'Dictionary key must be a string'
+            );
+        }
+
         $copy = clone $this;
         $copy->data[$key] = $value;
 
