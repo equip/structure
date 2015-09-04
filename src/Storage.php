@@ -50,7 +50,7 @@ trait Storage
     }
 
     // StructInterface
-    public function toArray()
+    final public function toArray()
     {
         return $this->getData();
     }
@@ -62,7 +62,7 @@ trait Storage
     }
 
     // JsonSerializable
-    public function jsonSerialize()
+    final public function jsonSerialize()
     {
         return $this->toArray();
     }
