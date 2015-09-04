@@ -2,11 +2,17 @@
 
 namespace Shadowhand\Destrukt;
 
-class Set extends UnorderedList
+class Set implements StructInterface
 {
+    use Storage;
+
     public function validate(array $data)
     {
-        parent::validate($data);
+        if (array_values($data) !== $data) {
+            throw new \InvalidArgumentException(
+                'Set structures cannot be indexed by keys'
+            );
+        }
 
         if (array_unique($data) !== $data) {
             throw new \InvalidArgumentException(
@@ -41,6 +47,9 @@ class Set extends UnorderedList
             );
         }
 
-        return parent::withValue($value);
+        $copy = clone $this;
+        $copy->data[] = $value;
+
+        return $copy;
     }
 }

@@ -43,7 +43,17 @@ class SetTest extends StructTest
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testReplaceFailure()
+    public function testReplaceHashFailure()
+    {
+        $this->struct->withData([
+            'test' => 'hash',
+        ]);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testReplaceDuplicateFailure()
     {
         $this->struct->withData([
             'black',
