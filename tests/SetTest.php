@@ -38,6 +38,10 @@ class SetTest extends StructTest
         $this->assertTrue($set->hasValue('white'));
         $this->assertFalse($copy->hasValue('white'));
         $this->assertTrue($copy->hasValue('yellow'));
+
+        $unchanged = $copy->withData($copy->getData());
+
+        $this->assertSame($copy, $unchanged);
     }
 
     /**
@@ -75,7 +79,7 @@ class SetTest extends StructTest
 
         $unchanged = $copy->withValue('cyan');
 
-        $this->assertSame($unchanged, $copy);
+        $this->assertSame($copy, $unchanged);
     }
 
     public function testUnique()
@@ -92,5 +96,9 @@ class SetTest extends StructTest
 
         $this->assertTrue($set->hasValue('blue'));
         $this->assertFalse($copy->hasValue('blue'));
+
+        $unchanged = $copy->withoutValue('blue');
+
+        $this->assertSame($copy, $unchanged);
     }
 }

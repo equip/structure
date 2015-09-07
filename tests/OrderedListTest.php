@@ -35,10 +35,16 @@ class OrderedListTest extends \PHPUnit_Framework_TestCase
 
     public function testChangeSorting()
     {
+        $copy = $this->struct->withSorter('rsort');
+
         $array   = $this->struct->toArray();
-        $flipped = $this->struct->withSorter('rsort')->toArray();
+        $flipped = $copy->toArray();
 
         $this->assertSame($array, array_reverse($flipped));
+
+        $unchanged = $copy->withSorter('rsort');
+
+        $this->assertSame($copy, $unchanged);
     }
 
     public function testReplace()
@@ -51,6 +57,10 @@ class OrderedListTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(5, count($list));
         $this->assertEquals(2, count($copy));
+
+        $unchanged = $copy->withData($copy->getData());
+
+        $this->assertSame($copy, $unchanged);
     }
 
     /**

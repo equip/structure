@@ -41,6 +41,10 @@ trait Storage
      */
     public function withData(array $data)
     {
+        if ($this->getData() === $data) {
+            return $this;
+        }
+
         $this->validate($data);
 
         $copy = clone $this;

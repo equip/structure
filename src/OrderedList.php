@@ -40,6 +40,10 @@ class OrderedList implements StructInterface
      */
     public function withSorter(callable $sorter)
     {
+        if ($this->sorter === $sorter) {
+            return $this;
+        }
+
         $copy = clone $this;
         $copy->sorter = $sorter;
 

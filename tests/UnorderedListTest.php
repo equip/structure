@@ -34,6 +34,10 @@ class UnorderedListTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(6, count($list));
         $this->assertEquals(2, count($copy));
+
+        $unchanged = $copy->withData($copy->getData());
+
+        $this->assertSame($copy, $unchanged);
     }
 
     /**

@@ -37,11 +37,14 @@ trait ValueStorage
      */
     public function withoutValue($value)
     {
-        $copy = clone $this;
+        $key = array_search($value, $this->data, true);
 
-        if (false !== ($key = array_search($value, $copy->data, true))) {
-            unset($copy->data[$key]);
+        if (false === $key) {
+            return $this;
         }
+
+        $copy = clone $this;
+        unset($copy->data[$key]);
 
         return $copy;
     }
