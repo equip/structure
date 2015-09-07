@@ -36,9 +36,7 @@ class Set implements StructInterface
     public function withValue($value)
     {
         if ($this->hasValue($value)) {
-            throw new \UnexpectedValueException(
-                'Set already contains the given value'
-            );
+            return $this;
         }
 
         return $this->withAddedValue($value);

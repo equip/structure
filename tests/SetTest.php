@@ -72,14 +72,10 @@ class SetTest extends StructTest
 
         $this->assertFalse($set->hasValue('cyan'));
         $this->assertTrue($copy->hasValue('cyan'));
-    }
 
-    /**
-     * @expectedException \UnexpectedValueException
-     */
-    public function testAppendFailure()
-    {
-        $this->struct->withValue('red');
+        $unchanged = $copy->withValue('cyan');
+
+        $this->assertSame($unchanged, $copy);
     }
 
     public function testUnique()
