@@ -18,9 +18,20 @@ trait Storage
     public function __construct(array $data = [])
     {
         if ($data) {
-            $this->validate($data);
-            $this->data = $data;
+            $this->replaceData($data);
         }
+    }
+
+    /**
+     * Replace existing data with fresh data.
+     *
+     * @param array $data
+     * @return void
+     */
+    private function replaceData(array $data)
+    {
+        $this->validate($data);
+        $this->data = $data;
     }
 
     /**
@@ -45,10 +56,8 @@ trait Storage
             return $this;
         }
 
-        $this->validate($data);
-
         $copy = clone $this;
-        $copy->data = $data;
+        $copy->replaceData($data);
 
         return $copy;
     }
@@ -80,10 +89,6 @@ trait Storage
     // Serializable
     public function unserialize($data)
     {
-        $data = unserialize($data);
-
-        $this->validate($data);
-
-        $this->data = $data;
+        $this->replaceData(unserialize($data));
     }
 }
