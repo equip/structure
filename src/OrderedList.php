@@ -6,6 +6,7 @@ use Shadowhand\Destrukt\Ability;
 
 class OrderedList implements StructInterface
 {
+    use Ability\Similar;
     use Ability\Storage;
     use Ability\ValueStorage;
 

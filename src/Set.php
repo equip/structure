@@ -6,6 +6,7 @@ use Shadowhand\Destrukt\Ability;
 
 class Set implements StructInterface
 {
+    use Ability\Similar;
     use Ability\Storage {
         replaceData as private replaceDataOriginal;
     }

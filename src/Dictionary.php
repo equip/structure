@@ -6,6 +6,7 @@ use Shadowhand\Destrukt\Ability;
 
 class Dictionary implements StructInterface
 {
+    use Ability\Similar;
     use Ability\Storage;
 
     public function validate(array $data)

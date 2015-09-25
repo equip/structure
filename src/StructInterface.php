@@ -8,6 +8,14 @@ interface StructInterface extends
     \Serializable
 {
     /**
+     * Check if given structure is the same as this structure.
+     *
+     * @param  StructInterface $struct
+     * @return boolean
+     */
+    public function isSimilar(StructInterface $target);
+
+    /**
      * Get an array copy of the current structure.
      *
      * @return array
