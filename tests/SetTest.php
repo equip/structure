@@ -54,16 +54,15 @@ class SetTest extends StructTest
         ]);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testReplaceDuplicateFailure()
     {
-        $this->struct->withData([
+        $copy = $this->struct->withData([
             'black',
             'blue',
             'black',
         ]);
+
+        $this->assertEquals(['black', 'blue'], $copy->toArray());
     }
 
     public function testAppend()

@@ -6,9 +6,24 @@ use Shadowhand\Destrukt\Ability;
 
 class Set implements StructInterface
 {
-    use Ability\Storage;
+    use Ability\Storage {
+        replaceData as private replaceDataOriginal;
+    }
     use Ability\ValueStorage {
         withValue as private withAddedValue;
+    }
+
+    /**
+     * Replace existing data with fresh data.
+     *
+     * Duplicates are removed before replace.
+     *
+     * @param array $data
+     * @return void
+     */
+    private function replaceData(array $data)
+    {
+        $this->replaceDataOriginal(array_unique($data));
     }
 
     public function validate(array $data)
@@ -16,12 +31,6 @@ class Set implements StructInterface
         if (array_values($data) !== $data) {
             throw new \InvalidArgumentException(
                 'Set structures cannot be indexed by keys'
-            );
-        }
-
-        if (array_unique($data) !== $data) {
-            throw new \InvalidArgumentException(
-                'Set structures must contain only unique values'
             );
         }
     }
