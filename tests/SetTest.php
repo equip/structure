@@ -100,4 +100,46 @@ class SetTest extends StructTest
 
         $this->assertSame($copy, $unchanged);
     }
+
+    public function testDifference()
+    {
+        $foo = new Set(['red', 'green', 'blue']);
+        $bar = new Set(['red', 'green']);
+
+        $diff = $foo->withDifference($bar);
+
+        $this->assertSame(['blue'], $diff->toArray());
+
+        $diff = $bar->withDifference($foo);
+
+        $this->assertSame([], $diff->toArray());
+    }
+
+    public function testIntersection()
+    {
+        $foo = new Set(['red', 'green', 'blue']);
+        $bar = new Set(['red', 'green']);
+
+        $diff = $foo->withIntersection($bar);
+
+        $this->assertSame(['red', 'green'], $diff->toArray());
+
+        $diff = $bar->withIntersection($foo);
+
+        $this->assertSame(['red', 'green'], $diff->toArray());
+    }
+
+    public function testUnion()
+    {
+        $foo = new Set(['red', 'green', 'blue']);
+        $bar = new Set(['red', 'green']);
+
+        $diff = $foo->withUnion($bar);
+
+        $this->assertSame(['red', 'green', 'blue'], $diff->toArray());
+
+        $diff = $bar->withUnion($foo);
+
+        $this->assertSame(['red', 'green', 'blue'], $diff->toArray());
+    }
 }

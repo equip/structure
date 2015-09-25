@@ -6,10 +6,13 @@ use Shadowhand\Destrukt\Ability;
 
 class Set implements StructInterface
 {
+    use Ability\Difference;
+    use Ability\Intersection;
     use Ability\Similar;
     use Ability\Storage {
         replaceData as private replaceDataOriginal;
     }
+    use Ability\Union;
     use Ability\ValueStorage {
         withValue as private withAddedValue;
     }
