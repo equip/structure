@@ -1,8 +1,6 @@
 <?php
 
-namespace Shadowhand\Test\Destrukt;
-
-use Shadowhand\Destrukt\OrderedList;
+namespace Shadowhand\Destrukt;
 
 class OrderedListTest extends \PHPUnit_Framework_TestCase
 {

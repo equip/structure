@@ -1,10 +1,8 @@
 <?php
 
-namespace Shadowhand\Test\Destrukt;
+namespace Shadowhand\Destrukt;
 
-use Shadowhand\Destrukt\Set;
-
-class SetTest extends StructTest
+class SetTest extends StructTestCase
 {
     public function setUp()
     {

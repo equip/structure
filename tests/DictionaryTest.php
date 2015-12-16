@@ -1,10 +1,8 @@
 <?php
 
-namespace Shadowhand\Test\Destrukt;
+namespace Shadowhand\Destrukt;
 
-use Shadowhand\Destrukt\Dictionary;
-
-class DictionaryTest extends StructTest
+class DictionaryTest extends StructTestCase
 {
     public function setUp()
     {

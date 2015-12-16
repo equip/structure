@@ -1,13 +1,11 @@
 <?php
 
-namespace Shadowhand\Test\Destrukt;
+namespace Shadowhand\Destrukt;
 
-use Shadowhand\Destrukt\Set;
-
-abstract class StructTest extends \PHPUnit_Framework_TestCase
+abstract class StructTestCase extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var Shadowhand\Destrukt\StructInterface
+     * @var StructInterface
      */
     protected $struct;
 
@@ -31,6 +29,7 @@ abstract class StructTest extends \PHPUnit_Framework_TestCase
         $this->assertJson(json_encode($this->struct));
     }
 
+    // Iterator
     public function testIterator()
     {
         $this->assertInstanceOf('\Iterator', $this->struct);

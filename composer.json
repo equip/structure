@@ -6,7 +6,9 @@
         "immutable",
         "hash map",
         "hash table",
-        "hash",
+        "dictionary",
+        "ordered list",
+        "unordered list",
         "list",
         "set"
     ],
@@ -31,7 +33,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Shadowhand\\Test\\Destrukt\\": "tests"
+            "Shadowhand\\Destrukt\\": "tests"
         }
     }
 }
