@@ -2,6 +2,8 @@
 
 namespace Shadowhand\Destrukt;
 
+use Shadowhand\Destrukt\Fixture\ClassDictionary;
+
 class DictionaryTest extends StructTestCase
 {
     public function setUp()
@@ -42,6 +44,17 @@ class DictionaryTest extends StructTestCase
         $this->assertTrue($this->struct->hasValue('four'));
         $this->assertFalse($this->struct->hasValue('five'));
         $this->assertFalse($this->struct->hasValue('nil'));
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testAppendValidationFailure()
+    {
+        $dict = new ClassDictionary([
+            get_class($this)
+        ]);
+        $dict = $dict->withValue('foo');
     }
 
     public function testAppend()

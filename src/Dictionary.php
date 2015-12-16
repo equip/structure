@@ -13,7 +13,7 @@ class Dictionary implements StructInterface
     {
         if (array_keys($data) === array_keys(array_values($data))) {
             throw new \InvalidArgumentException(
-                'Hash structures must be indexed by keys'
+                'Dictionary must be indexed by keys'
             );
         }
     }
@@ -60,6 +60,8 @@ class Dictionary implements StructInterface
                 'Dictionary key must be a string'
             );
         }
+
+        $this->validate([$key => $value]);
 
         $copy = clone $this;
         $copy->data[$key] = $value;

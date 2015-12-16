@@ -63,6 +63,8 @@ class Set implements StructInterface
             return $this;
         }
 
+        $this->validate([$value]);
+
         $copy = clone $this;
 
         $key = array_search($search, $this->data);
@@ -89,6 +91,8 @@ class Set implements StructInterface
         if ($this->hasValue($value)) {
             return $this;
         }
+
+        $this->validate([$value]);
 
         $copy = clone $this;
 

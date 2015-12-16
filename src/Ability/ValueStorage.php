@@ -23,6 +23,8 @@ trait ValueStorage
      */
     public function withValue($value)
     {
+        $this->validate([$value]);
+
         $copy = clone $this;
         $copy->data[] = $value;
 

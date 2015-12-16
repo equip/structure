@@ -2,6 +2,8 @@
 
 namespace Shadowhand\Destrukt;
 
+use Shadowhand\Destrukt\Fixture\NumberSet;
+
 class SetTest extends StructTestCase
 {
     public function setUp()
@@ -61,6 +63,33 @@ class SetTest extends StructTestCase
         ]);
 
         $this->assertEquals(['black', 'blue'], $copy->toArray());
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testAppendValidateFailure()
+    {
+        $set = new NumberSet([5]);
+        $set = $set->withValue('foo');
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testAppendAfterValidateFailure()
+    {
+        $set = new NumberSet([5]);
+        $set = $set->withValueAfter('foo', 5);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testAppendBeforeValidateFailure()
+    {
+        $set = new NumberSet([5]);
+        $set = $set->withValueBefore('foo', 5);
     }
 
     public function testAppend()
