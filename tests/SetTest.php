@@ -79,6 +79,60 @@ class SetTest extends StructTestCase
         $this->assertSame($copy, $unchanged);
     }
 
+    public function testAppendAfter()
+    {
+        $set = new Set;
+
+        $s1 = 1;
+        $s2 = 2;
+        $s3 = 3;
+        $s4 = 4;
+
+        $set = $set->withValue($s1);
+        $this->assertSame([$s1], $set->toArray());
+
+        $set = $set->withValueAfter($s2, $s1);
+        $this->assertSame([$s1, $s2], $set->toArray());
+
+        $set = $set->withValueAfter($s3, $s1);
+        $this->assertSame([$s1, $s3, $s2], $set->toArray());
+
+        // Nothing should change, s1 is already in the set
+        $set = $set->withValueAfter($s1, $s3);
+        $this->assertSame([$s1, $s3, $s2], $set->toArray());
+
+        // Value does not exist, it should append
+        $set = $set->withValueAfter($s4, 0);
+        $this->assertSame([$s1, $s3, $s2, $s4], $set->toArray());
+    }
+
+    public function testAppendBefore()
+    {
+        $set = new Set;
+
+        $s1 = 1;
+        $s2 = 2;
+        $s3 = 3;
+        $s4 = 4;
+
+        $set = $set->withValue($s1);
+        $this->assertSame([$s1], $set->toArray());
+
+        $set = $set->withValueBefore($s2, $s1);
+        $this->assertSame([$s2, $s1], $set->toArray());
+
+        $set = $set->withValueBefore($s3, $s1);
+        $this->assertSame([$s2, $s3, $s1], $set->toArray());
+
+        // Nothing should change, s1 is already in the set
+        $set = $set->withValueBefore($s1, $s3);
+        $this->assertSame([$s2, $s3, $s1], $set->toArray());
+
+        // Value does not exist, it should prepend
+        $set = $set->withValueBefore($s4, 0);
+        $this->assertSame([$s4, $s2, $s3, $s1], $set->toArray());
+    }
+
     public function testUnique()
     {
         $set = $this->struct->toArray();

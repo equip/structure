@@ -39,13 +39,6 @@ class Set implements StructInterface
         }
     }
 
-    /**
-     * Get a copy with an new value.
-     *
-     * @throws \UnexpectedValueException if the value already exists
-     * @param  mixed $value
-     * @return self
-     */
     public function withValue($value)
     {
         if ($this->hasValue($value)) {
@@ -53,5 +46,59 @@ class Set implements StructInterface
         }
 
         return $this->withAddedValue($value);
+    }
+
+    /**
+     * Get a copy with a new value after another.
+     *
+     * If the search value does not exist, the value will be appended.
+     *
+     * @param  mixed $value
+     * @param  mixed $search
+     * @return static
+     */
+    public function withValueAfter($value, $search)
+    {
+        if ($this->hasValue($value)) {
+            return $this;
+        }
+
+        $copy = clone $this;
+
+        $key = array_search($search, $this->data);
+        if (false === $key) {
+            array_push($copy->data, $value);
+        } else {
+            array_splice($copy->data, $key + 1, 0, $value);
+        }
+
+        return $copy;
+    }
+
+    /**
+     * Get a copy with a new value before another.
+     *
+     * If the search value does not exist, the value will be prepended.
+     *
+     * @param  mixed $value
+     * @param  mixed $search
+     * @return static
+     */
+    public function withValueBefore($value, $search)
+    {
+        if ($this->hasValue($value)) {
+            return $this;
+        }
+
+        $copy = clone $this;
+
+        $key = array_search($search, $this->data);
+        if (false === $key) {
+            array_unshift($copy->data, $value);
+        } else {
+            array_splice($copy->data, $key, 0, $value);
+        }
+
+        return $copy;
     }
 }

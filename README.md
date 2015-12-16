@@ -45,6 +45,7 @@ can be used to initialize the structure. Any value can be added.
 **`Set`** is an implementation of a [set][wiki-set] that stores a unique values.
 The same value will *not* appear more than once. Only an indexed array can be used
 to initialize the structure. Adding an existing value to the set will have no effect.
+A set also also be added to before or after an existing element.
 
 [wiki-dict]: https://en.wikipedia.org/wiki/Associative_array
 [wiki-list]: https://en.wikipedia.org/wiki/List_(abstract_data_type)
