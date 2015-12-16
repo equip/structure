@@ -27,7 +27,7 @@ class Set implements StructInterface
      */
     private function replaceData(array $data)
     {
-        $this->replaceDataOriginal(array_unique($data));
+        $this->replaceDataOriginal(array_unique($data, \SORT_REGULAR));
     }
 
     public function validate(array $data)

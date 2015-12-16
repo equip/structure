@@ -42,6 +42,12 @@ class SetTest extends StructTestCase
         $unchanged = $copy->withData($copy->getData());
 
         $this->assertSame($copy, $unchanged);
+
+        $copy = $this->struct->withData([
+            $this,
+            function () {
+            }
+        ]);
     }
 
     /**
