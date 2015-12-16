@@ -74,6 +74,38 @@ trait Storage
         return count($this->data);
     }
 
+    // Iterator
+    public function current()
+    {
+        return current($this->data);
+    }
+
+    // Iterator
+    public function key()
+    {
+        return key($this->data);
+    }
+
+    // Iterator
+    public function next()
+    {
+        next($this->data);
+    }
+
+    // Iterator
+    public function rewind()
+    {
+        reset($this->data);
+    }
+
+    // Iterator
+    public function valid()
+    {
+        $key = $this->key();
+        return isset($this->data[$key]);
+
+    }
+
     // JsonSerializable
     final public function jsonSerialize()
     {

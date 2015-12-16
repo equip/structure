@@ -4,6 +4,7 @@ namespace Shadowhand\Destrukt;
 
 interface StructInterface extends
     \Countable,
+    \Iterator,
     \JsonSerializable,
     \Serializable
 {

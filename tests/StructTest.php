@@ -30,4 +30,16 @@ abstract class StructTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertJson(json_encode($this->struct));
     }
+
+    public function testIterator()
+    {
+        $this->assertInstanceOf('\Iterator', $this->struct);
+
+        foreach ($this->struct as $key => $value) {
+            // Nothing needs to be asserted, the foreach() is the test
+        }
+
+        $array = \iterator_to_array($this->struct);
+        $this->assertSame($array, $this->struct->toArray());
+    }
 }
