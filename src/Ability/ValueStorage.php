@@ -16,7 +16,7 @@ trait ValueStorage
     }
 
     /**
-     * Get a copy with an new value.
+     * Get a copy with a new value.
      *
      * @param  mixed $value
      * @return self
