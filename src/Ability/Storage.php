@@ -5,14 +5,6 @@ namespace Shadowhand\Destrukt\Ability;
 trait Storage
 {
     /**
-     * @var array
-     */
-    private $data = [];
-
-    // StructInterface
-    abstract public function validate(array $array);
-
-    /**
      * @param array $data
      */
     public function __construct(array $data = [])
@@ -22,17 +14,13 @@ trait Storage
         }
     }
 
+    // StructInterface
+    abstract public function validate(array $array);
+
     /**
-     * Replace existing data with fresh data.
-     *
-     * @param array $data
-     * @return void
+     * @var array
      */
-    private function replaceData(array $data)
-    {
-        $this->validate($data);
-        $this->data = $data;
-    }
+    private $data = [];
 
     /**
      * Get a copy of the stored data.
@@ -122,5 +110,17 @@ trait Storage
     public function unserialize($data)
     {
         $this->replaceData(unserialize($data));
+    }
+
+    /**
+     * Replace existing data with fresh data.
+     *
+     * @param array $data
+     * @return void
+     */
+    private function replaceData(array $data)
+    {
+        $this->validate($data);
+        $this->data = $data;
     }
 }

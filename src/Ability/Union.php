@@ -9,17 +9,6 @@ trait Union
     use Comparison;
 
     /**
-     * Union given values with current values.
-     *
-     * @param  array $values
-     * @return array
-     */
-    private function union(array $values)
-    {
-        return array_values(array_unique(array_merge($this->toArray(), $values)));
-    }
-
-    /**
      * Get a copy with values unioned with current data.
      *
      * @param  StructInterface $target
@@ -30,5 +19,16 @@ trait Union
         $this->assertSimilar($target);
 
         return $this->withData($this->union($target->toArray()));
+    }
+
+    /**
+     * Union given values with current values.
+     *
+     * @param  array $values
+     * @return array
+     */
+    private function union(array $values)
+    {
+        return array_values(array_unique(array_merge($this->toArray(), $values)));
     }
 }
