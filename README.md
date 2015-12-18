@@ -2,13 +2,13 @@
 
 Simple, immutable data structures.
 
-[![Source Code](http://img.shields.io/badge/source-shadowhand/destrukt.svg?style=flat-square)](https://github.com/shadowhand/destrukt)
-[![Latest Version](https://img.shields.io/github/release/shadowhand/destrukt.svg?style=flat-square)](https://github.com/shadowhand/destrukt/releases)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/shadowhand/destrukt/blob/master/LICENSE)
-[![Build Status](https://img.shields.io/travis/shadowhand/destrukt/master.svg?style=flat-square)](https://travis-ci.org/shadowhand/destrukt)
-[![HHVM Status](https://img.shields.io/hhvm/shadowhand/destrukt.svg?style=flat-square)](http://hhvm.h4cc.de/package/shadowhand/destrukt)
-[![Coverage Status](https://img.shields.io/coveralls/shadowhand/destrukt/master.svg?style=flat-square)](https://coveralls.io/r/shadowhand/destrukt?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/shadowhand/destrukt.svg?style=flat-square)](https://packagist.org/packages/shadowhand/destrukt)
+[![Source Code](http://img.shields.io/badge/source-destruktphp/destrukt.svg?style=flat-square)](https://github.com/destruktphp/destrukt)
+[![Latest Version](https://img.shields.io/github/release/destruktphp/destrukt.svg?style=flat-square)](https://github.com/destruktphp/destrukt/releases)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/destruktphp/destrukt/blob/master/LICENSE)
+[![Build Status](https://img.shields.io/travis/destruktphp/destrukt/master.svg?style=flat-square)](https://travis-ci.org/destruktphp/destrukt)
+[![HHVM Status](https://img.shields.io/hhvm/destrukt/destrukt.svg?style=flat-square)](http://hhvm.h4cc.de/package/destrukt/destrukt)
+[![Coverage Status](https://img.shields.io/coveralls/destruktphp/destrukt/master.svg?style=flat-square)](https://coveralls.io/r/destruktphp/destrukt?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/destrukt/destrukt.svg?style=flat-square)](https://packagist.org/packages/destrukt/destrukt)
 
 ---
 
@@ -68,7 +68,7 @@ The following versions of PHP are supported.
 Via Composer
 
 ```bash
-$ composer require shadowhand/destrukt
+$ composer require destrukt/destrukt
 ```
 
 ## License

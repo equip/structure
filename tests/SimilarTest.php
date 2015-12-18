@@ -7,10 +7,10 @@ class SimilarTest extends \PHPUnit_Framework_TestCase
     public function dataSimilar()
     {
         $classes = [
-            'Shadowhand\Destrukt\Dictionary',
-            'Shadowhand\Destrukt\OrderedList',
-            'Shadowhand\Destrukt\Set',
-            'Shadowhand\Destrukt\UnorderedList',
+            'Destrukt\Dictionary',
+            'Destrukt\OrderedList',
+            'Destrukt\Set',
+            'Destrukt\UnorderedList',
         ];
 
         $matrix = [];

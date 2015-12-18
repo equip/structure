@@ -1,8 +1,8 @@
 <?php
 
-namespace Shadowhand\Destrukt\Fixture;
+namespace Destrukt\Fixture;
 
-use Shadowhand\Destrukt\Dictionary;
+use Destrukt\Dictionary;
 
 class ClassDictionary extends Dictionary
 {

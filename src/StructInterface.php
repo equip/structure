@@ -1,6 +1,6 @@
 <?php
 
-namespace Shadowhand\Destrukt;
+namespace Destrukt;
 
 interface StructInterface extends
     \Countable,

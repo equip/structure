@@ -1,8 +1,8 @@
 <?php
 
-namespace Shadowhand\Destrukt\Ability;
+namespace Destrukt\Ability;
 
-use Shadowhand\Destrukt\StructInterface;
+use Destrukt\StructInterface;
 
 trait Similar
 {

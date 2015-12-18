@@ -1,5 +1,5 @@
 {
-    "name": "shadowhand/destrukt",
+    "name": "destrukt/destrukt",
     "description": "Simple, immutable data structures",
     "keywords": [
         "data structure",
@@ -15,8 +15,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Woody Gilk",
-            "email": "woody.gilk@gmail.com"
+            "name": "Destrukt Contributors",
+            "homepage": "https://github.com/sparkphp/spark/graphs/contributors"
         }
     ],
     "require": {
@@ -26,14 +26,17 @@
         "phpunit/phpunit": "^4.8",
         "satooshi/php-coveralls": "^0.6.1"
     },
+    "replace": {
+        "shadowhand/destrukt": "self.version"
+    },
     "autoload": {
         "psr-4": {
-            "Shadowhand\\Destrukt\\": "src"
+            "Destrukt\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Shadowhand\\Destrukt\\": "tests"
+            "Destrukt\\": "tests"
         }
     }
 }

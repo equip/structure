@@ -1,8 +1,8 @@
 <?php
 
-namespace Shadowhand\Destrukt;
+namespace Destrukt;
 
-use Shadowhand\Destrukt\Ability;
+use Destrukt\Ability;
 
 class Dictionary implements StructInterface
 {

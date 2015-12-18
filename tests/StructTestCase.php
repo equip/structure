@@ -1,6 +1,6 @@
 <?php
 
-namespace Shadowhand\Destrukt;
+namespace Destrukt;
 
 abstract class StructTestCase extends \PHPUnit_Framework_TestCase
 {

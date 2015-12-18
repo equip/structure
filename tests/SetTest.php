@@ -1,8 +1,8 @@
 <?php
 
-namespace Shadowhand\Destrukt;
+namespace Destrukt;
 
-use Shadowhand\Destrukt\Fixture\NumberSet;
+use Destrukt\Fixture\NumberSet;
 
 class SetTest extends StructTestCase
 {

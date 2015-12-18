@@ -1,8 +1,8 @@
 <?php
 
-namespace Shadowhand\Destrukt\Fixture;
+namespace Destrukt\Fixture;
 
-use Shadowhand\Destrukt\Set;
+use Destrukt\Set;
 
 class NumberSet extends Set
 {

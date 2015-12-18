@@ -1,6 +1,6 @@
 <?php
 
-namespace Shadowhand\Destrukt;
+namespace Destrukt;
 
 class UnorderedListTest extends \PHPUnit_Framework_TestCase
 {

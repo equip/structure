@@ -1,8 +1,8 @@
 <?php
 
-namespace Shadowhand\Destrukt;
+namespace Destrukt;
 
-use Shadowhand\Destrukt\Fixture\ClassDictionary;
+use Destrukt\Fixture\ClassDictionary;
 
 class DictionaryTest extends StructTestCase
 {
