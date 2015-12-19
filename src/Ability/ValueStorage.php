@@ -50,4 +50,10 @@ trait ValueStorage
 
         return $copy;
     }
+
+    // StructInterface
+    abstract public function validate(array $data);
+
+    // StructInterface
+    abstract public function toArray();
 }
