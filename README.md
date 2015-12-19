@@ -2,13 +2,14 @@
 
 Simple, immutable data structures.
 
-[![Source Code](http://img.shields.io/badge/source-destruktphp/destrukt.svg?style=flat-square)](https://github.com/destruktphp/destrukt)
-[![Latest Version](https://img.shields.io/github/release/destruktphp/destrukt.svg?style=flat-square)](https://github.com/destruktphp/destrukt/releases)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/destruktphp/destrukt/blob/master/LICENSE)
-[![Build Status](https://img.shields.io/travis/destruktphp/destrukt/master.svg?style=flat-square)](https://travis-ci.org/destruktphp/destrukt)
-[![HHVM Status](https://img.shields.io/hhvm/destrukt/destrukt.svg?style=flat-square)](http://hhvm.h4cc.de/package/destrukt/destrukt)
-[![Coverage Status](https://img.shields.io/coveralls/destruktphp/destrukt/master.svg?style=flat-square)](https://coveralls.io/r/destruktphp/destrukt?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/destrukt/destrukt.svg?style=flat-square)](https://packagist.org/packages/destrukt/destrukt)
+[![Source Code](http://img.shields.io/badge/source-destruktphp/destrukt.svg)](https://github.com/destruktphp/destrukt)
+[![Latest Version](https://img.shields.io/github/release/destruktphp/destrukt.svg)](https://github.com/destruktphp/destrukt/releases)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/destruktphp/destrukt/blob/master/LICENSE)
+[![Build Status](https://img.shields.io/travis/destruktphp/destrukt/master.svg)](https://travis-ci.org/destruktphp/destrukt)
+[![HHVM Status](https://img.shields.io/hhvm/destrukt/destrukt.svg)](http://hhvm.h4cc.de/package/destrukt/destrukt)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/destruktphp/destrukt.svg)](https://scrutinizer-ci.com/g/destruktphp/destrukt/?branch=master)
+[![Code Quality](https://img.shields.io/scrutinizer/quality/g/destruktphp/destrukt.svg)](https://scrutinizer-ci.com/g/destruktphp/destrukt/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/destrukt/destrukt.svg)](https://packagist.org/packages/destrukt/destrukt)
 
 ---
 
