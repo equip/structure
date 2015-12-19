@@ -9,7 +9,7 @@ trait Storage
      */
     public function __construct(array $data = [])
     {
-        if ($data) {
+        if (!empty($data)) {
             $this->replaceData($data);
         }
     }
