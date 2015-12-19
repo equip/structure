@@ -2,7 +2,6 @@
 
 Simple, immutable data structures.
 
-[![Source Code](http://img.shields.io/badge/source-destruktphp/destrukt.svg)](https://github.com/destruktphp/destrukt)
 [![Latest Version](https://img.shields.io/github/release/destruktphp/destrukt.svg)](https://github.com/destruktphp/destrukt/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/destruktphp/destrukt/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/destruktphp/destrukt.svg)](https://travis-ci.org/destruktphp/destrukt)
