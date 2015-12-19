@@ -11,7 +11,7 @@ interface StructInterface extends
     /**
      * Check if given structure is the same as this structure.
      *
-     * @param  StructInterface $struct
+     * @param  StructInterface $target
      * @return boolean
      */
     public function isSimilar(StructInterface $target);
