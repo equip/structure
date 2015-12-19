@@ -34,7 +34,7 @@ trait ValueStorage
     /**
      * Get a copy without a given value.
      *
-     * @param  string $key
+     * @param  mixed $value
      * @return self
      */
     public function withoutValue($value)
