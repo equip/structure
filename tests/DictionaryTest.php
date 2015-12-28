@@ -16,6 +16,19 @@ class DictionaryTest extends StructTestCase
         ]);
     }
 
+    // ArrayAccess
+    public function testOffsetExists()
+    {
+        $this->assertTrue(isset($this->struct['one']));
+        $this->assertFalse(isset($this->struct['five']));
+    }
+
+    // ArrayAccess
+    public function testOffsetGet()
+    {
+        $this->assertSame(1, $this->struct['one']);
+    }
+
     public function testReplace()
     {
         $dict = $this->struct;

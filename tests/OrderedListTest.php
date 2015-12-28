@@ -15,6 +15,19 @@ class OrderedListTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    // ArrayAccess
+    public function testOffsetExists()
+    {
+        $this->assertTrue(isset($this->struct[0]));
+        $this->assertFalse(isset($this->struct[PHP_INT_MAX]));
+    }
+
+    // ArrayAccess
+    public function testOffsetGet()
+    {
+        $this->assertSame('apple', $this->struct[0]);
+    }
+
     public function testExists()
     {
         $this->assertTrue($this->struct->hasValue('banana'));

@@ -2,6 +2,8 @@
 
 namespace Destrukt\Ability;
 
+use RuntimeException;
+
 trait Storage
 {
     /**
@@ -54,6 +56,30 @@ trait Storage
     final public function toArray()
     {
         return $this->getData();
+    }
+
+    // ArrayAccess
+    public function offsetExists($offset)
+    {
+        return isset($this->data[$offset]);
+    }
+
+    // ArrayAccess
+    public function offsetGet($offset)
+    {
+        return $this->data[$offset];
+    }
+
+    // ArrayAccess
+    public function offsetSet($offset, $value)
+    {
+        throw $this->immutableException();
+    }
+
+    // ArrayAccess
+    public function offsetUnset($offset)
+    {
+        throw $this->immutableException();
     }
 
     // Countable
@@ -122,5 +148,16 @@ trait Storage
     {
         $this->validate($data);
         $this->data = $data;
+    }
+
+    /**
+     * @return RuntimeException
+     */
+    private function immutableException()
+    {
+        return new RuntimeException(sprintf(
+            'Cannot modify immutable class `%s` using array access',
+            get_class($this)
+        ));
     }
 }

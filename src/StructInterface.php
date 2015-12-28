@@ -3,6 +3,7 @@
 namespace Destrukt;
 
 interface StructInterface extends
+    \ArrayAccess,
     \Countable,
     \Iterator,
     \JsonSerializable,

@@ -9,6 +9,26 @@ abstract class StructTestCase extends \PHPUnit_Framework_TestCase
      */
     protected $struct;
 
+    // ArrayAccess
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessageRegExp /cannot modify immutable class/i
+     */
+    public function testOffsetSet()
+    {
+        $this->struct['test'] = true;
+    }
+
+    // ArrayAccess
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessageRegExp /cannot modify immutable class/i
+     */
+    public function testOffsetUnset()
+    {
+        unset($this->struct['test']);
+    }
+
     // Countable
     public function testCount()
     {
