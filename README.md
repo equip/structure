@@ -14,10 +14,13 @@ Simple, immutable data structures.
 
 Provides a number of common data structures that are not natively supported by PHP.
 Each structure is represented by an immutable object that can be counted and
-serialized to JSON. All of the structures also be used as [iterators][php-iterator].
+serialized to JSON. All of the structures also be used as [iterators][php-iterator]
+and as [arrays][php-arrayaccess], but cannot be modified using array functions.
+
 You can read more about [the "why" on my blog][blog-post].
 
 [php-iterator]: http://php.net/manual/en/class.iterator.php
+[php-arrayaccess]: http://php.net/manual/en/class.arrayaccess.php
 [blog-post]: http://shadowhand.me/immutable-data-structures-in-php/
 
 This package is compliant with [PSR-1][], [PSR-2][], and [PSR-4][]. If you notice
