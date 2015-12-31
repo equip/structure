@@ -100,4 +100,11 @@ class DictionaryTest extends StructTestCase
         $this->assertTrue($dict->hasValue('one'));
         $this->assertFalse($copy->hasValue('one'));
     }
+
+    public function testClear()
+    {
+        $dict = $this->struct->withData([]);
+
+        $this->assertSame([], $dict->toArray());
+    }
 }

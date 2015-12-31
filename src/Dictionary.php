@@ -11,7 +11,7 @@ class Dictionary implements StructInterface
 
     public function validate(array $data)
     {
-        if (array_keys($data) === array_keys(array_values($data))) {
+        if (!empty($data) && array_keys($data) === array_keys(array_values($data))) {
             throw new \InvalidArgumentException(
                 'Dictionary must be indexed by keys'
             );
