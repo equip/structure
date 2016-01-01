@@ -23,8 +23,7 @@
         "php": ">=5.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8",
-        "satooshi/php-coveralls": "^0.6.1"
+        "phpunit/phpunit": "^4.8"
     },
     "replace": {
         "shadowhand/destrukt": "self.version"
