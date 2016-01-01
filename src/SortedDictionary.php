@@ -4,22 +4,22 @@ namespace Destrukt;
 
 use Destrukt\Ability;
 
-class OrderedList implements StructInterface
+class SortedDictionary implements StructInterface
 {
+    use Ability\HashStorage;
     use Ability\Similar;
     use Ability\SortedStorage;
-    use Ability\ValueStorage;
 
     /**
      * @var callable
      */
-    private $sorter = 'sort';
+    private $sorter = 'asort';
 
     public function validate(array $data)
     {
-        if (array_values($data) !== $data) {
+        if (!empty($data) && array_keys($data) === array_keys(array_values($data))) {
             throw new \InvalidArgumentException(
-                'List structures cannot be indexed by keys'
+                'Dictionary must be indexed by keys'
             );
         }
     }

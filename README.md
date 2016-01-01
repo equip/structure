@@ -36,6 +36,10 @@ compliance oversights, please send a patch via pull request.
 stores values identified by a key. Only associative arrays can be used to
 initialize the structure. Any value can be defined by a string key.
 
+**`SortedDictionary`** is an implementation of a [associative array][wiki-dict]
+that also sorts the array. By default the array is sorted by value. The array
+is sorted every time the content or sorting method changes.
+
 **`OrderedList`** is an implementation of a [list][wiki-list] that stores ordered
 values. Only an indexed array can be used to initialize the structure. Any value
 can be added. When the list is exposed it will be sorted by the defined callable.
