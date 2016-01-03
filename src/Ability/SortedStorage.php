@@ -2,8 +2,6 @@
 
 namespace Destrukt\Ability;
 
-use Destrukt\StructInterface;
-
 trait SortedStorage
 {
     use Storage {
