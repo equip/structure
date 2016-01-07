@@ -13,7 +13,7 @@ class SortedDictionary implements StructInterface
     /**
      * @var callable
      */
-    private $sorter = 'asort';
+    protected $sorter = 'asort';
 
     public function validate(array $data)
     {

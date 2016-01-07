@@ -13,7 +13,7 @@ class OrderedList implements StructInterface
     /**
      * @var callable
      */
-    private $sorter = 'sort';
+    protected $sorter = 'sort';
 
     public function validate(array $data)
     {
