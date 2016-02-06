@@ -2,7 +2,7 @@
 
 namespace Destrukt;
 
-interface StructInterface extends
+interface StructureInterface extends
     \ArrayAccess,
     \Countable,
     \Iterator,
@@ -12,10 +12,9 @@ interface StructInterface extends
     /**
      * Check if given structure is the same as this structure.
      *
-     * @param  StructInterface $target
      * @return boolean
      */
-    public function isSimilar(StructInterface $target);
+    public function isSimilar(StructureInterface $target);
 
     /**
      * Get an array copy of the current structure.
@@ -23,12 +22,4 @@ interface StructInterface extends
      * @return array
      */
     public function toArray();
-
-    /**
-     * Validate an array for correct structure.
-     *
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function validate(array $data);
 }
