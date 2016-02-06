@@ -2,10 +2,15 @@
 
 namespace Destrukt;
 
-use Destrukt\Fixture\NumberSet;
+use PHPUnit_Framework_TestCase as TestCase;
 
-class SetTest extends StructTestCase
+class SetTest extends TestCase
 {
+    /**
+     * @var Set
+     */
+    private $struct;
+
     public function setUp()
     {
         $this->struct = new Set([
@@ -17,117 +22,77 @@ class SetTest extends StructTestCase
         ]);
     }
 
-    // ArrayAccess
-    public function testOffsetExists()
-    {
-        $this->assertTrue(isset($this->struct[0]));
-        $this->assertFalse(isset($this->struct[PHP_INT_MAX]));
-    }
-
-    // ArrayAccess
-    public function testOffsetGet()
-    {
-        $this->assertSame('red', $this->struct[0]);
-    }
-
-    public function testExists()
+    public function testHasValue()
     {
         $this->assertTrue($this->struct->hasValue('red'));
-        $this->assertTrue($this->struct->hasValue('white'));
+        $this->assertTrue($this->struct->hasValue('black'));
         $this->assertFalse($this->struct->hasValue('yellow'));
     }
 
-    public function testReplace()
+    public function testWithValues()
     {
-        $set = $this->struct;
-        $copy = $set->withData([
-            'yellow',
-            'orange',
+        $values = [
+            'ant',
+            'fly',
+        ];
+
+        $copy = $this->struct->withValues($values);
+
+        $this->assertNotSame($this->struct, $copy);
+        $this->assertSame($values, $copy->toArray());
+    }
+
+    public function testWithValuesUnique()
+    {
+        $values = [
+            'bee',
+            'wasp',
+            'hornet',
+            'bee',
+        ];
+
+        $copy = $this->struct->withValues($values);
+
+        $this->assertNotSame($this->struct, $copy);
+        $this->assertSame(array_unique($values), $copy->toArray());
+    }
+
+    public function testWithValuesInvalid()
+    {
+        $this->setExpectedException(ValidationException::class);
+
+        $copy = $this->struct->withValues([
+            'color' => 'magenta',
         ]);
-
-        $this->assertEquals(5, count($set));
-        $this->assertEquals(2, count($copy));
-
-        $this->assertTrue($set->hasValue('white'));
-        $this->assertFalse($copy->hasValue('white'));
-        $this->assertTrue($copy->hasValue('yellow'));
-
-        $unchanged = $copy->withData($copy->getData());
-
-        $this->assertSame($copy, $unchanged);
-
-        $copy = $this->struct->withData([
-            $this,
-            function () {
-            }
-        ]);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testReplaceHashFailure()
+    public function testWithValue()
     {
-        $this->struct->withData([
-            'test' => 'hash',
-        ]);
+        $copy = $this->struct->withValue('butterfly');
+
+        $this->assertNotSame($this->struct, $copy);
+        $this->assertFalse($this->struct->hasValue('butterfly'));
+        $this->assertTrue($copy->hasValue('butterfly'));
+
+        // If the value already exists, nothing changes
+        $same = $copy->withValue('butterfly');
+        $this->assertSame($copy, $same);
     }
 
-    public function testReplaceDuplicateFailure()
+    public function testWithoutValue()
     {
-        $copy = $this->struct->withData([
-            'black',
-            'blue',
-            'black',
-        ]);
+        $copy = $this->struct->withoutValue('blue');
 
-        $this->assertEquals(['black', 'blue'], $copy->toArray());
+        $this->assertNotSame($this->struct, $copy);
+        $this->assertTrue($this->struct->hasValue('blue'));
+        $this->assertFalse($copy->hasValue('blue'));
+
+        // If the value does not exist, nothing changes
+        $same = $copy->withoutValue('blue');
+        $this->assertSame($copy, $same);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testAppendValidateFailure()
-    {
-        $set = new NumberSet([5]);
-        $set = $set->withValue('foo');
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testAppendAfterValidateFailure()
-    {
-        $set = new NumberSet([5]);
-        $set = $set->withValueAfter('foo', 5);
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testAppendBeforeValidateFailure()
-    {
-        $set = new NumberSet([5]);
-        $set = $set->withValueBefore('foo', 5);
-    }
-
-    public function testAppend()
-    {
-        $set  = $this->struct;
-        $copy = $set->withValue('cyan');
-
-        $this->assertEquals(5, count($set));
-        $this->assertEquals(6, count($copy));
-
-        $this->assertFalse($set->hasValue('cyan'));
-        $this->assertTrue($copy->hasValue('cyan'));
-
-        $unchanged = $copy->withValue('cyan');
-
-        $this->assertSame($copy, $unchanged);
-    }
-
-    public function testAppendAfter()
+    public function testWithValueAfter()
     {
         $set = new Set;
 
@@ -154,7 +119,7 @@ class SetTest extends StructTestCase
         $this->assertSame([$s1, $s3, $s2, $s4], $set->toArray());
     }
 
-    public function testAppendBefore()
+    public function testWithValueBefore()
     {
         $set = new Set;
 
@@ -179,67 +144,5 @@ class SetTest extends StructTestCase
         // Value does not exist, it should prepend
         $set = $set->withValueBefore($s4, 0);
         $this->assertSame([$s4, $s2, $s3, $s1], $set->toArray());
-    }
-
-    public function testUnique()
-    {
-        $set = $this->struct->toArray();
-
-        $this->assertEquals($set, array_unique($set));
-    }
-
-    public function testRemoveValue()
-    {
-        $set  = $this->struct;
-        $copy = $set->withoutValue('blue');
-
-        $this->assertTrue($set->hasValue('blue'));
-        $this->assertFalse($copy->hasValue('blue'));
-
-        $unchanged = $copy->withoutValue('blue');
-
-        $this->assertSame($copy, $unchanged);
-    }
-
-    public function testDifference()
-    {
-        $foo = new Set(['red', 'green', 'blue']);
-        $bar = new Set(['red', 'green']);
-
-        $diff = $foo->withDifference($bar);
-
-        $this->assertSame(['blue'], $diff->toArray());
-
-        $diff = $bar->withDifference($foo);
-
-        $this->assertSame([], $diff->toArray());
-    }
-
-    public function testIntersection()
-    {
-        $foo = new Set(['red', 'green', 'blue']);
-        $bar = new Set(['red', 'green']);
-
-        $diff = $foo->withIntersection($bar);
-
-        $this->assertSame(['red', 'green'], $diff->toArray());
-
-        $diff = $bar->withIntersection($foo);
-
-        $this->assertSame(['red', 'green'], $diff->toArray());
-    }
-
-    public function testUnion()
-    {
-        $foo = new Set(['red', 'green', 'blue']);
-        $bar = new Set(['red', 'green']);
-
-        $diff = $foo->withUnion($bar);
-
-        $this->assertSame(['red', 'green', 'blue'], $diff->toArray());
-
-        $diff = $bar->withUnion($foo);
-
-        $this->assertSame(['red', 'green', 'blue'], $diff->toArray());
     }
 }

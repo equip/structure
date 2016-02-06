@@ -24,6 +24,15 @@ class StructureTest extends TestCase
                 ],
                 2,
             ],
+            [
+                Set::class,
+                [
+                    'red',
+                    'green',
+                    'blue',
+                ],
+                3,
+            ],
         ];
     }
 

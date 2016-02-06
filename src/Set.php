@@ -2,41 +2,25 @@
 
 namespace Destrukt;
 
-use Destrukt\Ability;
+use Destrukt\Traits\CanStructure;
 
-class Set implements StructInterface
+class Set implements SetInterface
 {
-    use Ability\Difference;
-    use Ability\Intersection;
-    use Ability\Similar;
-    use Ability\Storage {
-        replaceData as private replaceDataOriginal;
-    }
-    use Ability\Union;
-    use Ability\ValueStorage {
-        withValue as private withAddedValue;
+    use CanStructure;
+
+    public function hasValue($value)
+    {
+        return in_array($value, $this->values, true);
     }
 
-    /**
-     * Replace existing data with fresh data.
-     *
-     * Duplicates are removed before replace.
-     *
-     * @param array $data
-     * @return void
-     */
-    private function replaceData(array $data)
+    public function withValues(array $values)
     {
-        $this->replaceDataOriginal(array_unique($data, \SORT_REGULAR));
-    }
+        $this->assertValid($values);
 
-    public function validate(array $data)
-    {
-        if (array_values($data) !== $data) {
-            throw new \InvalidArgumentException(
-                'Set structures cannot be indexed by keys'
-            );
-        }
+        $copy = clone $this;
+        $copy->values = array_unique($values, SORT_REGULAR);
+
+        return $copy;
     }
 
     public function withValue($value)
@@ -45,64 +29,78 @@ class Set implements StructInterface
             return $this;
         }
 
-        return $this->withAddedValue($value);
+        $this->assertValid([$value]);
+
+        $copy = clone $this;
+        $copy->values[] = $value;
+
+        return $copy;
     }
 
-    /**
-     * Get a copy with a new value after another.
-     *
-     * If the search value does not exist, the value will be appended.
-     *
-     * @param  mixed $value
-     * @param  mixed $search
-     * @return static
-     */
+    public function withoutValue($value)
+    {
+        $key = array_search($value, $this->values, true);
+
+        if ($key === false) {
+            return $this;
+        }
+
+        $copy = clone $this;
+        unset($copy->values[$key]);
+
+        return $copy;
+    }
+
     public function withValueAfter($value, $search)
     {
         if ($this->hasValue($value)) {
             return $this;
         }
 
-        $this->validate([$value]);
+        $this->assertValid([$value]);
 
         $copy = clone $this;
 
-        $key = array_search($search, $this->data);
-        if (false === $key) {
-            array_push($copy->data, $value);
+        $key = array_search($search, $this->values);
+        if ($key === false) {
+            array_push($copy->values, $value);
         } else {
-            array_splice($copy->data, $key + 1, 0, $value);
+            array_splice($copy->values, $key + 1, 0, $value);
         }
 
         return $copy;
     }
 
-    /**
-     * Get a copy with a new value before another.
-     *
-     * If the search value does not exist, the value will be prepended.
-     *
-     * @param  mixed $value
-     * @param  mixed $search
-     * @return static
-     */
     public function withValueBefore($value, $search)
     {
         if ($this->hasValue($value)) {
             return $this;
         }
 
-        $this->validate([$value]);
+        $this->assertValid([$value]);
 
         $copy = clone $this;
 
-        $key = array_search($search, $this->data);
-        if (false === $key) {
-            array_unshift($copy->data, $value);
+        $key = array_search($search, $this->values);
+        if ($key === false) {
+            array_unshift($copy->values, $value);
         } else {
-            array_splice($copy->data, $key, 0, $value);
+            array_splice($copy->values, $key, 0, $value);
         }
 
         return $copy;
+    }
+
+    protected function assertValid(array $values)
+    {
+        if (empty($values)) {
+            return;
+        }
+
+        if ($values !== array_values($values)) {
+            throw ValidationException::invalid(
+                'Set structures cannot have distinct keys'
+            );
+        }
     }
 }
