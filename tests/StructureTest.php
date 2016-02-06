@@ -33,6 +33,17 @@ class StructureTest extends TestCase
                 ],
                 3,
             ],
+            [
+                OrderedList::class,
+                [
+                    'ant',
+                    'bee',
+                    'butterfly',
+                    'caterpiller',
+                    'fly',
+                ],
+                5,
+            ],
         ];
     }
 

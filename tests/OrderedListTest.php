@@ -2,112 +2,113 @@
 
 namespace Destrukt;
 
-class OrderedListTest extends \PHPUnit_Framework_TestCase
+use PHPUnit_Framework_TestCase as TestCase;
+
+class OrderedListTest extends TestCase
 {
+    /**
+     * @var OrderedList
+     */
+    private $struct;
+
     public function setUp()
     {
         $this->struct = new OrderedList([
+            'red',
+            'green',
+            'blue',
+            'black',
+            'white',
+            'green', // duplicate
+        ]);
+    }
+
+    public function testHasValue()
+    {
+        $this->assertTrue($this->struct->hasValue('red'));
+        $this->assertTrue($this->struct->hasValue('black'));
+        $this->assertFalse($this->struct->hasValue('yellow'));
+    }
+
+    public function testWithValues()
+    {
+        $values = [
+            'ant',
+            'fly',
+        ];
+
+        $copy = $this->struct->withValues($values);
+
+        $this->assertNotSame($this->struct, $copy);
+        $this->assertSame($values, $copy->toArray());
+
+        // If the values are exactly the same, nothing changes
+        $another = $copy->withValues($values);
+        $this->assertSame($copy, $another);
+    }
+
+    public function testWithValuesNotUnique()
+    {
+        $values = [
+            'ant',
+            'bee',
+            'bee',
+        ];
+
+        $copy = $this->struct->withValues($values);
+
+        $this->assertSame($values, $copy->toArray());
+        $this->assertNotSame(array_unique($values), $copy->toArray());
+    }
+
+    public function testWithValuesSort()
+    {
+        $values = [
+            'orange',
             'apple',
             'banana',
-            'cherry',
-            'orange',
-            'blueberry',
+        ];
+
+        $copy = $this->struct->withValues($values);
+
+        $this->assertNotSame($values, $copy->toArray());
+
+        sort($values);
+        $this->assertSame($values, $copy->toArray());
+    }
+
+    public function testWithValuesInvalid()
+    {
+        $this->setExpectedException(ValidationException::class);
+
+        $copy = $this->struct->withValues([
+            'color' => 'magenta',
         ]);
     }
 
-    // ArrayAccess
-    public function testOffsetExists()
+    public function testWithValue()
     {
-        $this->assertTrue(isset($this->struct[0]));
-        $this->assertFalse(isset($this->struct[PHP_INT_MAX]));
+        $copy = $this->struct->withValue('butterfly');
+
+        $this->assertNotSame($this->struct, $copy);
+        $this->assertFalse($this->struct->hasValue('butterfly'));
+        $this->assertTrue($copy->hasValue('butterfly'));
+
+        // If the value already exists, it is still appended
+        $another = $copy->withValue('butterfly');
+        $this->assertNotSame($copy, $another);
     }
 
-    // ArrayAccess
-    public function testOffsetGet()
+    public function testWithoutValue()
     {
-        $this->assertSame('apple', $this->struct[0]);
-    }
+        $copy = $this->struct->withoutValue('blue');
 
-    public function testExists()
-    {
-        $this->assertTrue($this->struct->hasValue('banana'));
-        $this->assertFalse($this->struct->hasValue('cabbage'));
-    }
+        $this->assertNotSame($this->struct, $copy);
+        $this->assertTrue($this->struct->hasValue('blue'));
+        $this->assertFalse($copy->hasValue('blue'));
 
-    public function testSorting()
-    {
-        $array = $this->struct->toArray();
-        $copy  = $array;
-
-        sort($array);
-
-        $this->assertEquals($array, $copy);
-    }
-
-    public function testChangeSorting()
-    {
-        $copy = $this->struct->withSorter('rsort');
-
-        $array   = $this->struct->toArray();
-        $flipped = $copy->toArray();
-
-        $this->assertSame($array, array_reverse($flipped));
-
-        $unchanged = $copy->withSorter('rsort');
-
-        $this->assertSame($copy, $unchanged);
-    }
-
-    public function testReplace()
-    {
-        $list = $this->struct;
-        $copy = $list->withData([
-            'grape',
-            'melon',
-        ]);
-
-        $this->assertEquals(5, count($list));
-        $this->assertEquals(2, count($copy));
-
-        $unchanged = $copy->withData($copy->getData());
-
-        $this->assertSame($copy, $unchanged);
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testReplaceFailure()
-    {
-        $this->struct->withData([
-            'actually' => 'hash',
-        ]);
-    }
-
-    public function testAppend()
-    {
-        $list = $this->struct;
-        $copy = $list->withValue('fig');
-
-        $this->assertEquals(count($copy), count($list) + 1);
-    }
-
-    public function testRemove()
-    {
-        $set  = $this->struct;
-        $copy = $set->withoutValue('apple');
-
-        $this->assertTrue($set->hasValue('apple'));
-        $this->assertFalse($copy->hasValue('apple'));
-    }
-
-    public function testNotUnique()
-    {
-        $array = $this->struct
-            ->withValue('pineapple')
-            ->withValue('pineapple')
-            ->toArray();
-
-        $this->assertNotEquals($array, array_unique($array));
+        // If the value does not exist, nothing changes
+        $same = $copy->withoutValue('blue');
+        $this->assertSame($copy, $same);
     }
 }
