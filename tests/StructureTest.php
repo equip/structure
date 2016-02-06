@@ -44,6 +44,17 @@ class StructureTest extends TestCase
                 ],
                 5,
             ],
+            [
+                UnorderedList::class,
+                [
+                    'ant',
+                    'caterpiller',
+                    'butterfly',
+                    'bee',
+                    'fly',
+                ],
+                5,
+            ],
         ];
     }
 

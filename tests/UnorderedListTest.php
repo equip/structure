@@ -2,87 +2,97 @@
 
 namespace Destrukt;
 
-class UnorderedListTest extends \PHPUnit_Framework_TestCase
+use PHPUnit_Framework_TestCase as TestCase;
+
+class UnorderedListTest extends TestCase
 {
+    /**
+     * @var UnorderedList
+     */
+    private $struct;
+
     public function setUp()
     {
         $this->struct = new UnorderedList([
             'red',
             'green',
             'blue',
-            'white',
             'black',
             'white',
+            'green', // duplicate
         ]);
     }
 
-    // ArrayAccess
-    public function testOffsetExists()
-    {
-        $this->assertTrue(isset($this->struct[0]));
-        $this->assertFalse(isset($this->struct[PHP_INT_MAX]));
-    }
-
-    // ArrayAccess
-    public function testOffsetGet()
-    {
-        $this->assertSame('red', $this->struct[0]);
-    }
-
-    public function testExists()
+    public function testHasValue()
     {
         $this->assertTrue($this->struct->hasValue('red'));
-        $this->assertFalse($this->struct->hasValue('beans'));
+        $this->assertTrue($this->struct->hasValue('black'));
+        $this->assertFalse($this->struct->hasValue('yellow'));
     }
 
-    public function testReplace()
+    public function testWithValues()
     {
-        $list = $this->struct;
-        $copy = $list->withData([
-            'yellow',
-            'orange',
+        $values = [
+            'ant',
+            'fly',
+        ];
+
+        $copy = $this->struct->withValues($values);
+
+        $this->assertNotSame($this->struct, $copy);
+        $this->assertSame($values, $copy->toArray());
+
+        // If the values are exactly the same, nothing changes
+        $another = $copy->withValues($values);
+        $this->assertSame($copy, $another);
+    }
+
+    public function testWithValuesNotUnique()
+    {
+        $values = [
+            'ant',
+            'bee',
+            'ant',
+        ];
+
+        $copy = $this->struct->withValues($values);
+
+        $this->assertSame($values, $copy->toArray());
+        $this->assertNotSame(array_unique($values), $copy->toArray());
+    }
+
+    public function testWithValuesInvalid()
+    {
+        $this->setExpectedException(ValidationException::class);
+
+        $copy = $this->struct->withValues([
+            'color' => 'magenta',
         ]);
-
-        $this->assertEquals(6, count($list));
-        $this->assertEquals(2, count($copy));
-
-        $unchanged = $copy->withData($copy->getData());
-
-        $this->assertSame($copy, $unchanged);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testReplaceFailure()
+    public function testWithValue()
     {
-        $this->struct->withData([
-            'actually' => 'hash',
-        ]);
+        $copy = $this->struct->withValue('butterfly');
+
+        $this->assertNotSame($this->struct, $copy);
+        $this->assertFalse($this->struct->hasValue('butterfly'));
+        $this->assertTrue($copy->hasValue('butterfly'));
+
+        // If the value already exists, it is still appended
+        $another = $copy->withValue('butterfly');
+        $this->assertNotSame($copy, $another);
     }
 
-    public function testAppend()
+    public function testWithoutValue()
     {
-        $list = $this->struct;
-        $copy = $list->withValue('red');
+        $copy = $this->struct->withoutValue('blue');
 
-        $this->assertEquals(6, count($list));
-        $this->assertEquals(7, count($copy));
-    }
+        $this->assertNotSame($this->struct, $copy);
+        $this->assertTrue($this->struct->hasValue('blue'));
+        $this->assertFalse($copy->hasValue('blue'));
 
-    public function testRemove()
-    {
-        $set  = $this->struct;
-        $copy = $set->withoutValue('green');
-
-        $this->assertTrue($set->hasValue('green'));
-        $this->assertFalse($copy->hasValue('green'));
-    }
-
-    public function testNotUnique()
-    {
-        $list = $this->struct->toArray();
-
-        $this->assertNotEquals($list, array_unique($list));
+        // If the value does not exist, nothing changes
+        $same = $copy->withoutValue('blue');
+        $this->assertSame($copy, $same);
     }
 }
