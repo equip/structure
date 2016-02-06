@@ -1,16 +1,18 @@
 <?php
 
-namespace Shadowhand\Test\Destrukt;
+namespace Destrukt;
 
-class SimilarTest extends \PHPUnit_Framework_TestCase
+use PHPUnit_Framework_TestCase as TestCase;
+
+class SimilarTest extends TestCase
 {
     public function dataSimilar()
     {
         $classes = [
-            'Destrukt\Dictionary',
-            'Destrukt\OrderedList',
-            'Destrukt\Set',
-            'Destrukt\UnorderedList',
+            Dictionary::class,
+            OrderedList::class,
+            Set::class,
+            UnorderedList::class,
         ];
 
         $matrix = [];
@@ -29,12 +31,5 @@ class SimilarTest extends \PHPUnit_Framework_TestCase
     public function testSimilar($similar, $primary, $secondary)
     {
         $this->assertSame($similar, $primary->isSimilar($secondary));
-
-        if ($similar) {
-            $this->assertNull($primary->assertSimilar($secondary));
-        } else {
-            $this->setExpectedException('\InvalidArgumentException');
-            $primary->assertSimilar($secondary);
-        }
     }
 }
