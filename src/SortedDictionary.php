@@ -2,25 +2,52 @@
 
 namespace Destrukt;
 
-use Destrukt\Ability;
-
-class SortedDictionary implements StructInterface
+class SortedDictionary extends Dictionary
 {
-    use Ability\HashStorage;
-    use Ability\Similar;
-    use Ability\SortedStorage;
+    public function withValues(array $values)
+    {
+        return $this->sortChanged(
+            parent::withValues($values)
+        );
+    }
+
+    public function withValue($key, $value)
+    {
+        return $this->sortChanged(
+            parent::withValue($key, $value)
+        );
+    }
+
+    public function withoutValue($key)
+    {
+        return $this->sortChanged(
+            parent::withoutValue($key)
+        );
+    }
 
     /**
-     * @var callable
+     * Sorts values, respecting keys.
+     *
+     * @return void
      */
-    protected $sorter = 'asort';
-
-    public function validate(array $data)
+    protected function sortValues()
     {
-        if (!empty($data) && array_keys($data) === array_keys(array_values($data))) {
-            throw new \InvalidArgumentException(
-                'Dictionary must be indexed by keys'
-            );
+        asort($this->values);
+    }
+
+    /**
+     * Sorts the dictionary if it is not the same.
+     *
+     * @param SortedDictionary $copy
+     *
+     * @return SortedDictionary
+     */
+    private function sortChanged(SortedDictionary $copy)
+    {
+        if ($copy !== $this) {
+            $copy->sortValues();
         }
+
+        return $copy;
     }
 }

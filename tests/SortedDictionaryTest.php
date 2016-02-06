@@ -21,11 +21,5 @@ class SortedDictionaryTest extends DictionaryTest
         asort($values);
 
         $this->assertSame($values, $this->struct->toArray());
-
-        $copy = $this->struct->withSorter('ksort');
-
-        ksort($values);
-
-        $this->assertSame($values, $copy->toArray());
     }
 }

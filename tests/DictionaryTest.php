@@ -2,10 +2,15 @@
 
 namespace Destrukt;
 
-use Destrukt\Fixture\ClassDictionary;
+use PHPUnit_Framework_TestCase as TestCase;
 
-class DictionaryTest extends StructTestCase
+class DictionaryTest extends TestCase
 {
+    /**
+     * @var Dictionary
+     */
+    protected $struct;
+
     public function setUp()
     {
         $this->struct = new Dictionary([
@@ -16,95 +21,78 @@ class DictionaryTest extends StructTestCase
         ]);
     }
 
-    // ArrayAccess
-    public function testOffsetExists()
+    public function testGetValue()
     {
-        $this->assertTrue(isset($this->struct['one']));
-        $this->assertFalse(isset($this->struct['five']));
+        $this->assertSame(1, $this->struct->getValue('one'));
+        $this->assertSame(2, $this->struct->getValue('two'));
+
+        // Default value is null
+        $this->assertNull($this->struct->getValue('fuzzy'));
+
+        // Can also be specified
+        $this->assertSame(false, $this->struct->getValue('fuzzy', false));
     }
 
-    // ArrayAccess
-    public function testOffsetGet()
-    {
-        $this->assertSame(1, $this->struct['one']);
-    }
-
-    public function testReplace()
-    {
-        $dict = $this->struct;
-        $copy = $dict->withData([
-            'one'   => 'uno',
-            'two'   => 'dos',
-            'three' => 'tres',
-            'four'  => 'quatro',
-        ]);
-
-        $this->assertEquals(1, $dict->getValue('one'));
-        $this->assertEquals('uno', $copy->getValue('one'));
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testReplaceFailure()
-    {
-        $this->struct->withData([3, 2, 1]);
-    }
-
-    public function testExists()
+    public function testHasValue()
     {
         $this->assertTrue($this->struct->hasValue('one'));
         $this->assertTrue($this->struct->hasValue('four'));
-        $this->assertFalse($this->struct->hasValue('five'));
-        $this->assertFalse($this->struct->hasValue('nil'));
+        $this->assertFalse($this->struct->hasValue('fuzzy'));
+
+        // Null values can be checked
+        $copy = $this->struct->withValue('wuzzy', null);
+        $this->assertTrue($copy->hasValue('wuzzy'));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testAppendValidationFailure()
+    public function testWithValues()
     {
-        $dict = new ClassDictionary([
-            get_class($this)
-        ]);
-        $dict = $dict->withValue('foo');
+        $values = [
+            'zero' => '0',
+            'pi' => '3.1416',
+        ];
+
+        $copy = $this->struct->withValues($values);
+
+        $this->assertNotSame($this->struct, $copy);
+        $this->assertSame($values, $copy->toArray());
+
+        // Setting the same values should not copy
+        $another = $copy->withValues($values);
+        $this->assertSame($copy, $another);
     }
 
-    public function testAppend()
+    public function testWithValuesInvalid()
     {
-        $dict = $this->struct;
-        $copy = $dict->withValue('five', 5);
+        $this->setExpectedException(ValidationException::class);
 
-        $this->assertEquals(4, count($dict));
-        $this->assertEquals(5, count($copy));
-
-        $this->assertEquals(null, $dict->getValue('five'));
-
-        $this->assertEquals(5, $copy->getValue('five'));
-        $this->assertEquals(null, $copy->getValue('six'));
+        $copy = $this->struct->withValues([1, 2, 3]);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testAppendKeyFailure()
+    public function testWithValue()
     {
-        $this->struct->withValue(6, 'six');
+        $this->assertArrayNotHasKey('five', $this->struct);
+
+        $copy = $this->struct->withValue('five', 5);
+
+        $this->assertNotSame($this->struct, $copy);
+        $this->assertArrayHasKey('five', $copy);
+
+        // Setting the same values should not copy
+        $another = $copy->withValue('five', 5);
+        $this->assertSame($copy, $another);
     }
 
-    public function testRemoveKey()
+    public function testWithoutValue()
     {
-        $dict = $this->struct;
-        $copy = $dict->withoutValue('one');
+        $this->assertArrayHasKey('one', $this->struct);
 
-        $this->assertTrue($dict->hasValue('one'));
-        $this->assertFalse($copy->hasValue('one'));
-    }
+        $copy = $this->struct->withoutValue('one');
 
-    public function testClear()
-    {
-        $dict = $this->struct->withData([]);
+        $this->assertNotSame($this->struct, $copy);
+        $this->assertArrayNotHasKey('one', $copy);
 
-        $this->assertSame([], $dict->toArray());
+        // Removing the a non-exisistant value should not copy
+        $another = $copy->withoutValue('one');
+        $this->assertSame($copy, $another);
     }
 }
