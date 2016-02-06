@@ -37,13 +37,13 @@ stores values identified by a key. Only associative arrays can be used to
 initialize the structure. Any value can be defined by a string key.
 
 **`SortedDictionary`** is an implementation of a [associative array][wiki-dict]
-that also sorts the array. By default the array is sorted by value. The array
-is sorted every time the content or sorting method changes.
+that also sorts the array. When the dictionary is modified it will be sorted.
+By default the [`asort`][php-asort] function is used.
 
 **`OrderedList`** is an implementation of a [list][wiki-list] that stores ordered
 values. Only an indexed array can be used to initialize the structure. Any value
-can be added. When the list is exposed it will be sorted by the defined callable.
-By default the [`sort`][php-sort] function will be used.
+can be added. When the list is modified it will be sorted. By default the
+[`sort`][php-sort] function will be used.
 
 **`UnorderedList`** is an implementation of a [list][wiki-list] that stores
 unordered values. The same value may appear more than once. Only an indexed array
@@ -59,6 +59,7 @@ A set also also be added to before or after an existing element.
 [wiki-set]: https://en.wikipedia.org/wiki/Set_(abstract_data_type)
 
 [php-sort]: http://php.net/sort
+[php-asort]: http://php.net/asort
 
 ## Requirements
 
