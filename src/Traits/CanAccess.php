@@ -1,8 +1,8 @@
 <?php
 
-namespace Destrukt\Traits;
+namespace Equip\Structure\Traits;
 
-use Destrukt\ImmutableException;
+use Equip\Structure\ImmutableException;
 
 trait CanAccess /* implements ArrayAccess */
 {

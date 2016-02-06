@@ -1,11 +1,11 @@
 <?php
 
-namespace Destrukt\Traits;
+namespace Equip\Structure\Traits;
 
 trait CanValidate
 {
     /**
-     * @throws \Destrukt\StructureException
+     * @throws \Equip\Structure\StructureException
      *  If the array is not usable for this structure.
      *
      * @param array $values

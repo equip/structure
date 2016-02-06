@@ -1,11 +1,11 @@
 <?php
 
-namespace Destrukt\Traits;
+namespace Equip\Structure\Traits;
 
 trait CanSerializeJson /* implements JsonSerializable */
 {
     /**
-     * @see \Destrukt\Traits\CanArray
+     * @see \Equip\Structure\Traits\CanArray
      */
     abstract public function toArray();
 

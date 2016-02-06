@@ -1,8 +1,8 @@
 <?php
 
-namespace Destrukt;
+namespace Equip\Structure;
 
-use Destrukt\Traits\CanStructure;
+use Equip\Structure\Traits\CanStructure;
 
 class OrderedList implements ListInterface
 {

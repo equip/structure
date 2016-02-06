@@ -1,6 +1,6 @@
 <?php
 
-namespace Destrukt\Traits;
+namespace Equip\Structure\Traits;
 
 trait CanIterate /* implements Iterator */
 {

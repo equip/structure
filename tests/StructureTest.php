@@ -1,10 +1,10 @@
 <?php
 
-namespace Destrukt;
+namespace Equip\Structure;
 
 use ArrayAccess;
 use Countable;
-use Destrukt\ImmutableException;
+use Equip\Structure\ImmutableException;
 use Exception;
 use JsonSerializable;
 use Iterator;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Destrukt\Traits;
+namespace Equip\Structure\Traits;
 
-use Destrukt\StructureInterface;
+use Equip\Structure\StructureInterface;
 
 trait CanCompare
 {

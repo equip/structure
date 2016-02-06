@@ -1,6 +1,6 @@
 <?php
 
-namespace Destrukt;
+namespace Equip\Structure;
 
 use PHPUnit_Framework_TestCase as TestCase;
 
