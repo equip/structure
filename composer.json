@@ -1,5 +1,5 @@
 {
-    "name": "destrukt/destrukt",
+    "name": "equip/structure",
     "description": "Simple, immutable data structures",
     "keywords": [
         "data structure",
@@ -15,8 +15,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Destrukt Contributors",
-            "homepage": "https://github.com/sparkphp/spark/graphs/contributors"
+            "name": "Equip Contributors",
+            "homepage": "https://github.com/equip"
         }
     ],
     "require": {
@@ -26,16 +26,17 @@
         "phpunit/phpunit": "^4.8|^5.0"
     },
     "replace": {
-        "shadowhand/destrukt": "self.version"
+        "shadowhand/destrukt": "self.version",
+        "destruktphp/destrukt": "self.version"
     },
     "autoload": {
         "psr-4": {
-            "Destrukt\\": "src"
+            "Equip\\Structure\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Destrukt\\": "tests"
+            "Equip\\Structure\\": "tests"
         }
     }
 }

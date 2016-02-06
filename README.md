@@ -1,27 +1,24 @@
-# Destrukt
+## Equip Structure
 
-Simple, immutable data structures.
-
-[![Latest Version](https://img.shields.io/github/release/destruktphp/destrukt.svg)](https://github.com/destruktphp/destrukt/releases)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/destruktphp/destrukt/blob/master/LICENSE)
-[![Build Status](https://travis-ci.org/destruktphp/destrukt.svg)](https://travis-ci.org/destruktphp/destrukt)
-[![HHVM Status](https://img.shields.io/hhvm/destrukt/destrukt.svg)](http://hhvm.h4cc.de/package/destrukt/destrukt)
-[![Code Coverage](https://scrutinizer-ci.com/g/destruktphp/destrukt/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/destruktphp/destrukt/?branch=master)
-[![Code Quality](https://scrutinizer-ci.com/g/destruktphp/destrukt/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/destruktphp/destrukt/?branch=master)
+[![Latest Stable Version](https://img.shields.io/packagist/v/equip/structure.svg)](https://packagist.org/packages/equip/structure)
+[![License](https://img.shields.io/packagist/l/equip/structure.svg)](https://github.com/equip/structure/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/equip/structure.svg)](https://travis-ci.org/equip/structure)
+[![Code Coverage](https://scrutinizer-ci.com/g/equip/structure/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/equip/structure/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/equip/structure/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/equip/structure/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/destrukt/destrukt.svg)](https://packagist.org/packages/destrukt/destrukt)
 
----
-
-Provides a number of common data structures that are not natively supported by PHP.
-Each structure is represented by an immutable object that can be counted and
-serialized to JSON. All of the structures also be used as [iterators][php-iterator]
-and as [arrays][php-arrayaccess], but cannot be modified using array functions.
-
-You can read more about [the "why" on my blog][blog-post].
+Provides a number of common data structures in [Equip](http://equip.github.io/)
+that are not natively supported by PHP. Each structure is represented by an
+immutable object that can be counted and serialized to JSON. All of the structures
+also be used as [iterators][php-iterator] and as [arrays][php-arrayaccess], but
+cannot be modified using array functions.
 
 [php-iterator]: http://php.net/manual/en/class.iterator.php
 [php-arrayaccess]: http://php.net/manual/en/class.arrayaccess.php
-[blog-post]: http://shadowhand.me/immutable-data-structures-in-php/
+
+For more information, see [the documentation][docs].
+
+[docs]: http://equipframework.readthedocs.org/en/latest/structure
 
 This package is compliant with [PSR-1][], [PSR-2][], and [PSR-4][]. If you notice
 compliance oversights, please send a patch via pull request.
@@ -75,7 +72,7 @@ The following versions of PHP are supported.
 Via Composer
 
 ```bash
-$ composer require destrukt/destrukt
+$ composer require equip/structure
 ```
 
 ## License
