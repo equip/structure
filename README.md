@@ -10,8 +10,8 @@
 Provides a number of common data structures in [Equip](http://equip.github.io/)
 that are not natively supported by PHP. Each structure is represented by an
 immutable object that can be counted and serialized to JSON. All of the structures
-also be used as [iterators][php-iterator] and as [arrays][php-arrayaccess], but
-cannot be modified using array functions.
+can be used as [iterators][php-iterator] and [arrays][php-arrayaccess], but cannot
+be modified using array functions.
 
 [php-iterator]: http://php.net/manual/en/class.iterator.php
 [php-arrayaccess]: http://php.net/manual/en/class.arrayaccess.php
